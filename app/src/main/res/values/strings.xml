@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Task 1. Anagram</string>
+    <string name="Reverse">Перевернуть</string>
+    <string name="ReversedString">Здесь будет перевернутая строка</string>
+    <string name="InputExceptionsText">Введите текст исключений</string>
+    <string name="InputText">Введите текст</string>
+</resources>
