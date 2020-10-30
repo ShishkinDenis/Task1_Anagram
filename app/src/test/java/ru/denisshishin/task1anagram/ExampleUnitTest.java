@@ -1,8 +1,6 @@
 package ru.denisshishin.task1anagram;
 
 import org.junit.Test;
-import org.w3c.dom.ls.LSOutput;
-
 import static org.junit.Assert.*;
 
 /**
