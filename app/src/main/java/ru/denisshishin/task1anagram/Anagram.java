@@ -24,28 +24,24 @@ public class Anagram {
                     } else if (setOfExceptions.contains(charText[r])) {
                         r--;
                     } else {
-
                             char tmp = charText[l];
                             charText[l] = charText[r];
                             charText[r] = tmp;
                             l++;
                             r--;
-
                     }
                 }
-
-
-        String reversedString = new String(charText);
-
-        return reversedString;
+        return new String(charText);
     }
 
     public static String createAnagram(String text,String exceptions) {
-        String anagram = "";
+        StringBuilder anagram = new StringBuilder();
     for (String part : text.split(" ")){
-              anagram += reverseString(part,exceptions) + " ";
+              anagram.append(reverseString(part, exceptions)).append(" ");
              }
-    return anagram;
+    return anagram.toString();
     }
+
+
 
 }
