@@ -20,8 +20,10 @@ public class MainActivity extends AppCompatActivity {
     TextView tvOutput;
     EditText editText, editTextExceptions;
     Button btnReverse;
-    //String anagram;
-    final static String KEY = "KEY";
+    // String anagram;
+    final static String KEY_EDIT_TEXT = "EDIT_TEXT";
+    final static String KEY_EDIT_TEXT_EXCEPTIONS = "EDIT_TEXT_EXCEPTIONS";
+    final static String KEY_TV_OTPUT = "TV_OTPUT";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,16 +39,25 @@ public class MainActivity extends AppCompatActivity {
         editTextExceptions.getText().toString());
 
         btnReverse.setOnClickListener(v -> {
-            tvOutput.setText(anagram);
+            if (!editText.getText().toString().isEmpty()) {
+                tvOutput.setText(anagram);
+            }
+            else {
+                tvOutput.setText("");
+                Toast toast = Toast.makeText(getApplicationContext(),"Вы ничего не ввели",
+                        Toast.LENGTH_SHORT);
+                toast.show();
+            }
         });*/
 
-          btnReverse.setOnClickListener(v -> {
+        btnReverse.setOnClickListener(v -> {
               if (!editText.getText().toString().isEmpty()) {
                   tvOutput.setText(
                           Anagram.createAnagram(editText.getText().toString(),
                           editTextExceptions.getText().toString()));
               }
               else {
+                  tvOutput.setText("");
                   Toast toast = Toast.makeText(getApplicationContext(),"Вы ничего не ввели",
                           Toast.LENGTH_SHORT);
                   toast.show();
@@ -56,16 +67,23 @@ public class MainActivity extends AppCompatActivity {
 
      @Override
    protected void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putString(KEY,Anagram.createAnagram(editText.getEditableText().toString(),
-                editTextExceptions.getEditableText().toString()));
+
+         outState.putString(KEY_EDIT_TEXT,editText.getText().toString());
+         outState.putString(KEY_EDIT_TEXT_EXCEPTIONS,editTextExceptions.getText().toString());
+         outState.putString(KEY_TV_OTPUT,tvOutput.getText().toString());
+         super.onSaveInstanceState(outState);
+
     }
 
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        tvOutput.setText(Anagram.createAnagram(editText.getEditableText().toString(),
-                editTextExceptions.getEditableText().toString()));
+
+        editText.setText(savedInstanceState.getString(KEY_EDIT_TEXT));
+        editTextExceptions.setText(savedInstanceState.getString(KEY_EDIT_TEXT_EXCEPTIONS));
+        tvOutput.setText(savedInstanceState.getString(KEY_TV_OTPUT));
+
+
     }
 }
 
