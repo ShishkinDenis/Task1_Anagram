@@ -39,8 +39,10 @@ public class Anagram {
     for (String part : text.split(" ")){
               anagram.append(reverseString(part, exceptions)).append(" ");
              }
-    return anagram.toString();
+    return anagram.toString().trim();
     }
+
+
 
 
 
