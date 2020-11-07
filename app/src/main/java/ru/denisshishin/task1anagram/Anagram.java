@@ -42,6 +42,15 @@ public class Anagram {
     return anagram.toString().trim();
     }
 
+    public static void main(String[] args) {
+        String s = "abc1 абв2";
+        String s2 = "12";
+        System.out.println(reverseString(s,s2));
+        System.out.println(createAnagram(s,s2));
+    }
+
+
+
 
 
 
