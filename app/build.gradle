@@ -1,6 +1,25 @@
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'spoon'
+
+// This section is optional
+spoon {
+    // for debug output
+    debug = true
+
+    // To run a single test class
+    className = 'fully.qualified.TestCase'
+
+    // To run a single method in TestCase
+    methodName = 'testMyApp'
+
+    // To execute the tests device by device */
+    sequential = true
+
+    // To grant permissions to Android M >= devices */
+    grantAllPermissions = true
+}
 
 android {
     compileSdkVersion 30
@@ -40,6 +59,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
+    androidTestImplementation 'com.squareup.spoon:spoon-client:2.0.0-SNAPSHOT'
 
 
 }

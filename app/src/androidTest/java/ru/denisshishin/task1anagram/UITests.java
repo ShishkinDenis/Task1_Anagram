@@ -1,6 +1,4 @@
-package ru.denisshishin.task1anagram;
-
-import android.content.Intent;
+package ru.denisshishin.task1anagram;import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.RemoteException;
 import android.view.View;
@@ -38,6 +36,8 @@ import static androidx.test.core.app.ApplicationProvider.getApplicationContext;
 
 import android.content.pm.ActivityInfo;
 
+import com.squareup.spoon.SpoonRule;
+
 import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 import static org.hamcrest.Matchers.is;
 
@@ -45,24 +45,32 @@ import static org.hamcrest.Matchers.is;
 @LargeTest
 public class UITests {
     @Rule
-    public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
+    public SpoonRule spoon = new SpoonRule();
+    public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
 
-    // сохранить в spoon
+    //capture screenshot: spoon.screenshot(mActivityRule.getActivity(), "screenshotName");
+    //@Rule
+    //public ActivityScenarioRule<MainActivity> activityTestRule = new ActivityScenarioRule<>(MainActivity.class);
+   // public ActivityTestRule<MainActivity> activityTestRule = new ActivityTestRule<>(MainActivity.class);
+
+// сохранить в spoon
     @Test
     public void anagramIsDisplayed(){
        onView(withId(R.id.tietInputText)).perform(replaceText("xyz9 эюя?"));
+       spoon.screenshot(activityTestRule.getActivity(), "screenshotName");
        onView(withId(R.id.tietInputExceptionText)).perform(replaceText("9?"));
        onView(withId(R.id.btnReverse)).perform(click());
+      // spoon.screenshot(activityTestRule.getActivity(), "screenshotName2");
        onView(withId(R.id.tvOutput)).check(matches(withText("zyx9 яюэ?")));
     }
 
-    @Test
+  /*  @Test
     public void toastMessageIsDisplayed() {
         onView(withId(R.id.btnReverse)).perform(click());
         onView(withText("Вы ничего не ввели")).inRoot(ToastMatcher.isToast()).check(matches(isDisplayed()));
     }
 
-    @Test
+   /* @Test
     public void instanceIsSavedWhenRecreatingActivity(){
         onView(withId(R.id.tietInputText)).perform(replaceText("xyz9 эюя?"));
         onView(withId(R.id.tietInputExceptionText)).perform(replaceText("9?"));
@@ -73,9 +81,9 @@ public class UITests {
         onView(withId(R.id.tietInputText)).check(matches(withText("xyz9 эюя?")));
         onView(withId(R.id.tietInputExceptionText)).check(matches(withText("9?")));
         onView(withId(R.id.tvOutput)).check(matches(withText("zyx9 яюэ?")));
-    }
+    }*/
 
-    @Test
+   /* @Test
     public void instanceIsSavedWhenRotating(){
         onView(withId(R.id.tietInputText)).perform(replaceText("xyz9 эюя?"));
         onView(withId(R.id.tietInputExceptionText)).perform(replaceText("9?"));
@@ -98,5 +106,6 @@ public class UITests {
         UiDevice device = UiDevice.getInstance(getInstrumentation());
         device.setOrientationNatural();
     }
+    */
 }
 
