@@ -1,25 +1,19 @@
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.2'
+    }
+}
 plugins {
     id 'com.android.application'
 }
-apply plugin: 'spoon'
-
-// This section is optional
-spoon {
-    // for debug output
-    debug = true
-
-    // To run a single test class
-    className = 'fully.qualified.TestCase'
-
-    // To run a single method in TestCase
-    methodName = 'testMyApp'
-
-    // To execute the tests device by device */
-    sequential = true
-
-    // To grant permissions to Android M >= devices */
-    grantAllPermissions = true
-}
+apply plugin: 'com.android.application'
+apply plugin: "com.jaredsburrows.spoon"
 
 android {
     compileSdkVersion 30
@@ -47,8 +41,8 @@ android {
     }
 }
 
-dependencies {
 
+dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
@@ -59,7 +53,15 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test:rules:1.1.0'
     androidTestImplementation 'androidx.test.uiautomator:uiautomator:2.2.0'
-    androidTestImplementation 'com.squareup.spoon:spoon-client:2.0.0-SNAPSHOT'
-
+    androidTestImplementation "com.squareup.spoon:spoon-client:2.0.0-SNAPSHOT"
+    androidTestImplementation 'com.jraska:falcon:2.1.1'
+    androidTestImplementation 'com.jraska:falcon-spoon-compat:2.1.1'
 
 }
+
+spoon {
+    debug = true
+    grantAllPermissions = true
+
+}
+
