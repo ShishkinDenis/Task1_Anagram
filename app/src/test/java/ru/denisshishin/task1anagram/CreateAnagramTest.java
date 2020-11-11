@@ -33,6 +33,23 @@ public class CreateAnagramTest {
     public void anagramWithIgnoredXLIsCorrect() {
         assertEquals("dexdnimoF oocl 7/42", Anagram.createAnagram("Foxminded cool 24/7","xl"));
     }
+    @Test
+    public void anagramWithSameTextInBothInputsIsCorrect() {
+        assertEquals("foxminded", Anagram.createAnagram("foxminded","foxminded"));
+    }
+    @Test
+    public void anagramWithAllLettersIsCorrect() {
+        assertEquals("ЬЫЪЩШЧЦХФУТСРПОНМЛКЙИЗЖЁЕДГВБАяюэьыъщшчцхфутсрпонXYZмлкйизжёедгвба" +
+                "WVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcbaЭЮЯ",
+                Anagram.createAnagram("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" +
+                "абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ","XYZЭЮЯ"));
+    }
+    @Test
+    public void anagramWithSpecificSymbolsIsCorrect() {
+        assertEquals(".~}|{`_^][@+?->=:<;/.,*)(’&%$#\"\\!",
+                Anagram.createAnagram("!\\\"#$%&’()*+,-./:;<=>?@[]^_`{|}~.","+-:"));
+    }
+
 
 
 }

@@ -81,5 +81,77 @@ public class UITests {
         activityTestRule.getActivity().setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
     }
 
+    @Test
+    public void anagramOfSpaceIsDisplayed(){
+        MainActivity mainActivityFour = activityTestRule.launchActivity(new Intent());
+        spoon.screenshot(mainActivityFour,"ScreenD0");
+        onView(withId(R.id.tietInputText)).perform(replaceText(" "));
+        spoon.screenshot(mainActivityFour,"ScreenD1");
+        onView(withId(R.id.btnReverse)).perform(click());
+        spoon.screenshot(mainActivityFour,"ScreenD3");
+        onView(withId(R.id.tvOutput)).check(matches(withText("")));
+        spoon.screenshot(mainActivityFour,"ScreenD4");
+    }
+
+    @Test
+    public void anagramWithIgnoredDigitsIsDisplayed(){
+        MainActivity mainActivityFive = activityTestRule.launchActivity(new Intent());
+        spoon.screenshot(mainActivityFive,"ScreenD0");
+        onView(withId(R.id.tietInputText)).perform(replaceText("Foxminded cool 24/7"));
+        spoon.screenshot(mainActivityFive,"ScreenD1");
+        onView(withId(R.id.tietInputExceptionText)).perform(replaceText("0123456789"));
+        spoon.screenshot(mainActivityFive,"ScreenD2");
+        onView(withId(R.id.btnReverse)).perform(click());
+        spoon.screenshot(mainActivityFive,"ScreenD3");
+        onView(withId(R.id.tvOutput)).check(matches(withText("dednimxoF looc 24/7")));
+        spoon.screenshot(mainActivityFive,"ScreenD4");
+    }
+
+    @Test
+    public void anagramWithIgnoredXLIsDisplayed(){
+        MainActivity mainActivitySix = activityTestRule.launchActivity(new Intent());
+        spoon.screenshot(mainActivitySix,"ScreenE0");
+        onView(withId(R.id.tietInputText)).perform(replaceText("Foxminded cool 24/7"));
+        spoon.screenshot(mainActivitySix,"ScreenE1");
+        onView(withId(R.id.tietInputExceptionText)).perform(replaceText("xl"));
+        spoon.screenshot(mainActivitySix,"ScreenE2");
+        onView(withId(R.id.btnReverse)).perform(click());
+        spoon.screenshot(mainActivitySix,"ScreenE3");
+        onView(withId(R.id.tvOutput)).check(matches(withText("dexdnimoF oocl 7/42")));
+        spoon.screenshot(mainActivitySix,"ScreenE4");
+    }
+
+    @Test
+    public void ifEmptyInputEmptyOutputIsDisplayed(){
+        MainActivity mainActivitySeven = activityTestRule.launchActivity(new Intent());
+        spoon.screenshot(mainActivitySeven,"ScreenF0");
+        onView(withId(R.id.tietInputText)).perform(replaceText(""));
+        spoon.screenshot(mainActivitySeven,"ScreenF1");
+        onView(withId(R.id.tietInputExceptionText)).perform(replaceText(""));
+        spoon.screenshot(mainActivitySeven,"ScreenF2");
+        onView(withId(R.id.btnReverse)).perform(click());
+        spoon.screenshot(mainActivitySeven,"ScreenF3");
+        onView(withId(R.id.tvOutput)).check(matches(withText("")));
+        spoon.screenshot(mainActivitySeven,"ScreenF4");
+    }
+
+    @Test
+    public void anagramWithSpecificSymbolsIsDisplayed(){
+        MainActivity mainActivityEight = activityTestRule.launchActivity(new Intent());
+        spoon.screenshot(mainActivityEight,"ScreenG0");
+        onView(withId(R.id.tietInputText)).perform(
+                replaceText("!\\\"#$%&’()*+,-./:;<=>?@[]^_`{|}~."));
+        spoon.screenshot(mainActivityEight,"ScreenG1");
+        onView(withId(R.id.tietInputExceptionText)).perform(replaceText("+-:"));
+        spoon.screenshot(mainActivityEight,"ScreenG2");
+        onView(withId(R.id.btnReverse)).perform(click());
+        spoon.screenshot(mainActivityEight,"ScreenG3");
+        onView(withId(R.id.tvOutput)).check(matches(withText(".~}|{`_^][@+?->=:<;/.,*)(’&%$#\"\\!")));
+        spoon.screenshot(mainActivityEight,"ScreenG4");
+    }
+
+
+
+
 }
 
