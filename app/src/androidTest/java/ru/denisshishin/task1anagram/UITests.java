@@ -1,12 +1,11 @@
 package ru.denisshishin.task1anagram;
 
 import android.content.Intent;
-import android.os.RemoteException;
+import android.content.pm.ActivityInfo;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.filters.LargeTest;
 import androidx.test.rule.ActivityTestRule;
-import androidx.test.uiautomator.UiDevice;
 
 import com.squareup.spoon.SpoonRule;
 
@@ -22,7 +21,6 @@ import static androidx.test.espresso.assertion.ViewAssertions.matches;
 import static androidx.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static androidx.test.espresso.matcher.ViewMatchers.withId;
 import static androidx.test.espresso.matcher.ViewMatchers.withText;
-import static androidx.test.platform.app.InstrumentationRegistry.getInstrumentation;
 
 @RunWith(AndroidJUnit4.class)
 @LargeTest
@@ -66,12 +64,9 @@ public class UITests {
         spoon.screenshot(mainActivityThree, "ScreenC2");
         onView(withId(R.id.btnReverse)).perform(click());
         spoon.screenshot(mainActivityThree, "ScreenC3");
-        UiDevice device = UiDevice.getInstance(getInstrumentation());
-        try {
-            device.setOrientationLeft();
-        } catch (RemoteException e) {
-            e.printStackTrace();
-        }
+
+        mainActivityThree.setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_REVERSE_LANDSCAPE );
+
         spoon.screenshot(mainActivityThree, "ScreenC4");
         onView(withId(R.id.tietInputText)).check(matches(withText("xyz9 эюя?")));
         spoon.screenshot(mainActivityThree, "ScreenC5");
@@ -82,9 +77,8 @@ public class UITests {
     }
 
     @After
-    public void backToNaturalOrientation() throws RemoteException {
-        UiDevice device = UiDevice.getInstance(getInstrumentation());
-        device.setOrientationNatural();
+    public void backToNaturalOrientation() {
+        activityTestRule.getActivity().setRequestedOrientation( ActivityInfo.SCREEN_ORIENTATION_PORTRAIT );
     }
 
 }

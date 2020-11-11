@@ -13,4 +13,26 @@ public class CreateAnagramTest {
     public void anagramOfEachWordIsCorrect() {
         assertEquals("cba1 вба2", Anagram.createAnagram("abc1 абв2","12"));
     }
+    @Test
+    public void anagramOfSpaceIsCorrect() {
+        assertEquals("", Anagram.createAnagram(" ","12"));
+    }
+    @Test
+    public void emptyAnagramIsCorrect() {
+        assertEquals("", Anagram.createAnagram("",""));
+    }
+    @Test
+    public void anagramWithoutIgnoredCharsIsCorrect() {
+        assertEquals("321", Anagram.createAnagram("123",""));
+    }
+    @Test
+    public void anagramWithIgnoredDigitsIsCorrect() {
+        assertEquals("dednimxoF looc 24/7", Anagram.createAnagram("Foxminded cool 24/7","0123456789"));
+    }
+    @Test
+    public void anagramWithIgnoredXLIsCorrect() {
+        assertEquals("dexdnimoF oocl 7/42", Anagram.createAnagram("Foxminded cool 24/7","xl"));
+    }
+
+
 }
