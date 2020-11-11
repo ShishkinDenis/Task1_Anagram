@@ -150,8 +150,5 @@ public class UITests {
         spoon.screenshot(mainActivityEight,"ScreenG4");
     }
 
-
-
-
 }
 
