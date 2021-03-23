@@ -4,4 +4,5 @@
     <string name="ReversedString">Здесь будет перевернутая строка</string>
     <string name="InputExceptionsText">Введите текст исключений</string>
     <string name="InputText">Введите текст</string>
+    <string name="noInputWarning">Вы ничего не ввели</string>
 </resources>

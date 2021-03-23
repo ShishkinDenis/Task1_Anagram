@@ -1,6 +1,19 @@
+
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.stanfy.spoon:spoon-gradle-plugin:1.2.2'
+    }
+}
 plugins {
     id 'com.android.application'
 }
+apply plugin: 'com.android.application'
+apply plugin: "com.jaredsburrows.spoon"
 
 android {
     compileSdkVersion 30
@@ -28,12 +41,23 @@ android {
     }
 }
 
-dependencies {
 
+dependencies {
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
     testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.espresso:espresso-intents:3.1.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test:rules:1.1.0'
+    androidTestImplementation "com.squareup.spoon:spoon-client:2.0.0-SNAPSHOT"
 }
+
+spoon {
+    debug = true
+    grantAllPermissions = true
+
+}
+
